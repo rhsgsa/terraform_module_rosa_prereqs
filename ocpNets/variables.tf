@@ -1,7 +1,16 @@
-variable "aws_access_key" {}
+variable "aws_access_key" {
+    description = "Access key name"
+    default = "AKIARJ6EQT2VRD4NQRUU"    
+}
 variable "aws_secret_key" {}
-variable "aws_key_path" {}
-variable "aws_key_name" {}
+variable "aws_key_path" {
+    description = "SSH key path"
+    default = "/Users/tim/.ssh/"    
+}
+variable "aws_key_name" {
+    description = "ssh key name"
+    default = "my-key2"     
+}
 
 variable "aws_region" {
     description = "EC2 Region for the VPC"
@@ -10,12 +19,12 @@ variable "aws_region" {
 
 variable "vpc_id" {
     description = "ID of the Corporate VPC"
-    default = "vpc-08ef24dc6efe47054"
+    default = "vpc-0ec6024204e4dedab"
 }
 
 variable "aws_internet_gateway_id" {
     description = "ID of the Corporate Internet Gateway"
-    default = "igw-00f1cbd8387206883"
+    default = "igw-0cd1d1a3fd790fd21"
 }
 
 variable "ocp_public_subnet_cidr_a" {
