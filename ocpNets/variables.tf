@@ -19,12 +19,12 @@ variable "aws_region" {
 
 variable "vpc_id" {
     description = "ID of the Corporate VPC"
-    default = "vpc-0ec6024204e4dedab"
+    default = "vpc-05088c80b3e72241b"
 }
 
 variable "aws_internet_gateway_id" {
     description = "ID of the Corporate Internet Gateway"
-    default = "igw-0cd1d1a3fd790fd21"
+    default = "igw-0f424e12f9a026b54"
 }
 
 variable "ocp_public_subnet_cidr_a" {
