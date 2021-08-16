@@ -97,11 +97,17 @@ resource "aws_security_group" "nat" {
         cidr_blocks = [var.ocp_private_subnet_cidr_a]
     }
     ingress {
-        from_port = 22
-        to_port = 22
+        from_port = 6443
+        to_port = 6443
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = [var.ocp_private_subnet_cidr_a]
     }
+    # ingress {
+    #     from_port = 22
+    #     to_port = 22
+    #     protocol = "tcp"
+    #     cidr_blocks = ["0.0.0.0/0"]
+    # }
     ingress {
         from_port = 1024
         to_port = 65535
