@@ -9,6 +9,7 @@ resource "aws_subnet" "ap-southeast-1-public" {
 
     tags = {
         Name = "OCP Public Subnet AZ A"
+        Cluster-Name = local.cluster_name
     }
 }
 
@@ -22,6 +23,7 @@ resource "aws_route_table" "ap-southeast-1-public" {
 
     tags = {
         Name = "OCP Public Subnet AZ A"
+        Cluster-Name = local.cluster_name
     }
 }
 
@@ -42,6 +44,7 @@ resource "aws_subnet" "ap-southeast-1-private" {
 
     tags = {
         Name = "OCP Private Subnet AZ A"
+        Cluster-Name = local.cluster_name
     }
 }
 
@@ -55,6 +58,7 @@ resource "aws_nat_gateway" "natgw_a" {
 
   tags = {
     Name = "gw NAT zone a"
+    Cluster-Name = local.cluster_name
   }
 }
 
@@ -68,6 +72,7 @@ resource "aws_route_table" "ap-southeast-1-private" {
 
     tags = {
         Name = "OCP Private Subnet AZ A"
+        Cluster-Name = local.cluster_name
     }
 }
 
@@ -79,7 +84,7 @@ resource "aws_route_table_association" "ap-southeast-1-private" {
 /*
   Update NAT instance with OCP rules
 */
-resource "aws_security_group" "nat" {
+resource "aws_security_group" "ocp_nat" {
     name = "vpc_ocp_nat"
     description = "Allow traffic to pass from the private subnet to the internet and allow incoming"
 
@@ -126,5 +131,6 @@ resource "aws_security_group" "nat" {
 
     tags = {
         Name = "OCPNATSG"
+        Cluster-Name = local.cluster_name
     }
 }
