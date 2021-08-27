@@ -20,9 +20,13 @@ terraform apply
 ### Creating the new OCP subnets
 
 1. edit ocpNets/variables.tf and update the following variables:
+   * aws_profile with the AWS profile to use
    * vpc_id with the corporate VPC id from setup
    * aws_internet_gateway_id with the corporate internet gateway id from setup
    * aws_nat_gateway_id with the corporate nat gateway from setup
+   * ocp_public_subnet_cidr_a with the public subnet cidr
+   * ocp_private_subnet_cidr_a with the private subnet cir
+
 2. run `terraform plan` and validate the changes we will be making
 3. run `terraform apply` 
 
