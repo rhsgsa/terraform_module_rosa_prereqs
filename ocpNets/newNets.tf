@@ -57,7 +57,7 @@ resource "aws_nat_gateway" "natgw_a" {
   subnet_id     = aws_subnet.ap-southeast-1-public.id
 
   tags = {
-    Name = "gw NAT zone a"
+    Name = "OCP GW NAT AZ A"
     Cluster-Name = local.cluster_name
   }
 }
@@ -84,53 +84,53 @@ resource "aws_route_table_association" "ap-southeast-1-private" {
 /*
   Update NAT instance with OCP rules
 */
-resource "aws_security_group" "ocp_nat" {
-    name = "vpc_ocp_nat"
-    description = "Allow traffic to pass from the private subnet to the internet and allow incoming"
+# resource "aws_security_group" "ocp_nat" {
+#     name = "vpc_ocp_nat"
+#     description = "Allow traffic to pass from the private subnet to the internet and allow incoming"
 
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = [var.ocp_private_subnet_cidr_a]
+#     ingress {
+#         from_port = 80
+#         to_port = 80
+#         protocol = "tcp"
+#         cidr_blocks = [var.ocp_private_subnet_cidr_a]
 
-    }
-    ingress {
-        from_port = 443
-        to_port = 443
-        protocol = "tcp"
-        cidr_blocks = [var.ocp_private_subnet_cidr_a]
-    }
-    ingress {
-        from_port = 6443
-        to_port = 6443
-        protocol = "tcp"
-        cidr_blocks = [var.ocp_private_subnet_cidr_a]
-    }
-    # ingress {
-    #     from_port = 22
-    #     to_port = 22
-    #     protocol = "tcp"
-    #     cidr_blocks = ["0.0.0.0/0"]
-    # }
-    ingress {
-        from_port = 1024
-        to_port = 65535
-        protocol = "tcp"
-        cidr_blocks = [var.ocp_private_subnet_cidr_a]
-    }
+#     }
+#     ingress {
+#         from_port = 443
+#         to_port = 443
+#         protocol = "tcp"
+#         cidr_blocks = [var.ocp_private_subnet_cidr_a]
+#     }
+#     ingress {
+#         from_port = 6443
+#         to_port = 6443
+#         protocol = "tcp"
+#         cidr_blocks = [var.ocp_private_subnet_cidr_a]
+#     }
+#     # ingress {
+#     #     from_port = 22
+#     #     to_port = 22
+#     #     protocol = "tcp"
+#     #     cidr_blocks = ["0.0.0.0/0"]
+#     # }
+#     ingress {
+#         from_port = 1024
+#         to_port = 65535
+#         protocol = "tcp"
+#         cidr_blocks = [var.ocp_private_subnet_cidr_a]
+#     }
 
-    egress {
-        from_port = 0
-        to_port = 65535
-        protocol = "tcp"
-        cidr_blocks = [var.ocp_private_subnet_cidr_a]
-    }
+#     egress {
+#         from_port = 0
+#         to_port = 65535
+#         protocol = "tcp"
+#         cidr_blocks = [var.ocp_private_subnet_cidr_a]
+#     }
 
-    vpc_id = var.vpc_id
+#     vpc_id = var.vpc_id
 
-    tags = {
-        Name = "OCPNATSG"
-        Cluster-Name = local.cluster_name
-    }
-}
+#     tags = {
+#         Name = "OCPNATSG"
+#         Cluster-Name = local.cluster_name
+#     }
+# }
