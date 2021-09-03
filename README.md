@@ -35,7 +35,7 @@ terraform apply
 We will now follow the instructions [here](https://docs.openshift.com/container-platform/4.5/installing/installing_aws/installing-aws-vpc.html). Update the install-config.yaml file updating the 
 
 
-## Install ARO on existing VPC
+## Install ROSA on existing VPC
 First check rosa prerequisites
 
 ```bash
