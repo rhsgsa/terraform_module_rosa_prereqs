@@ -1,33 +1,6 @@
-# variable "aws_access_key" {
-#     description = "Access key name"
-#     default = "AKIARJ6EQT2VRD4NQRUU"    
-# }
-
-# variable "aws_secret_key" {}
-# variable "aws_key_path" {
-#     description = "SSH key path"
-#     default = "/Users/ltsai/.ssh/"    
-# }
-# variable "aws_key_name" {
-#     description = "ssh key name"
-#     default = "worklaptop_aws_rsa.pub"     
-# }
-
 variable "aws_profile" {
     description = "AWS profile"
     default = "default"
-}
-
-resource "random_id" "server" {  
-    byte_length = 4
-
-    keepers = {
-        public_cidr_a = "${var.ocp_public_subnet_cidr_a}"
-    }
-}
-
-locals {
-    cluster_name = "rosa-${random_id.server.hex}"
 }
 
 variable "aws_region" {
