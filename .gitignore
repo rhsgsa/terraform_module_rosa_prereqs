@@ -33,3 +33,7 @@ pull-secret.txt
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+#Visual Studio Code workspace
+*.code-workspace
+.vscode
