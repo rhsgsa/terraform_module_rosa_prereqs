@@ -31,19 +31,19 @@ fi
 
 echo "Using ROLE_PREFIX: $ROLE_PREFIX"
 
-for name in `aws iam list-roles | jq -r .Roles[].RoleName | grep ^$ROLE_PREFIX`; do 
+for name in `aws iam list-roles | jq -r .Roles[].RoleName | grep ^$ROLE_PREFIX-`; do 
   
   echo "Processing IAM role: $name"
 
   for profile in `aws iam list-instance-profiles-for-role --role-name $name | jq -r .InstanceProfiles[].InstanceProfileName`; do
-    echo "Remove IAM role: $name from instance profile: $profile"
+    echo "Removing IAM role: $name from instance profile: $profile"
     $cmd aws iam remove-role-from-instance-profile --instance-profile-name $profile --role-name $name
     echo "Deleting IAM instance profile: $profile"
     $cmd aws iam delete-instance-profile --instance-profile-name $profile
   done
 
   for policy in `aws iam list-attached-role-policies --role-name $name | jq -r .AttachedPolicies[].PolicyArn`; do
-    echo "Detach IAM policy: $policy from role: $name"
+    echo "Detaching IAM policy: $policy from role: $name"
     $cmd aws iam detach-role-policy --role-name $name --policy-arn $policy
     echo "Deleting IAM policy: $policy"
     $cmd aws iam delete-policy --policy-arn $policy
