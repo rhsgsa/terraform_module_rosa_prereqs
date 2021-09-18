@@ -5,20 +5,26 @@ if [ -z "${ROLE_PREFIX+x}" ]; then
   exit -1
 fi
 
+RED=$'\e[0;31m'
+NC='\033[0m' # No Color
+
 opt_dry_run=false
 while :; do
     case $1 in
         --dry-run) 
           opt_dry_run=true
-          echo "***In dry run mode***"
+          echo -e "${RED}***IN DRY RUN MODE***${NC}"
         ;;
         *) break
     esac
     shift
 done
 
+#RED='\033[0;31m'
+#echo -e "Default \e[31mRed"
+
 if "$opt_dry_run"; then
-    cmd="echo > DRYRUN: $*"
+    cmd="echo -e ${RED}> DRYRUN: $*${NC}"
 else
     cmd=''
 fi
