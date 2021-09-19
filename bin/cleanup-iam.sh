@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "${ROLE_PREFIX+x}" ]; then
-  echo "Please define \$ROLE_PREFIX before continuning"
+  echo "Please define \$ROLE_PREFIX to delete before continuning"
   exit -1
 fi
 
@@ -19,9 +19,6 @@ while :; do
     esac
     shift
 done
-
-#RED='\033[0;31m'
-#echo -e "Default \e[31mRed"
 
 if "$opt_dry_run"; then
     cmd="echo -e ${RED}> DRYRUN: $*${NC}"
